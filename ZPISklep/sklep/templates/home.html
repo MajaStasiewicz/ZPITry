@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html>
+     <head>
+          <meta charset="UTF-8" />
+          <title>HOME</title>
+          <link rel="stylesheet" href="{%static 'sklep.css'%}">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <script src="https://kit.fontawesome.com/c4254e24a8.js"></script>
+     </head>
+     <body>
+        
+        <header>
+            <div class="header-left">
+                <div class="logo">FOCzki</div>
+                <nav>
+                    <ul>
+                        <li><a class="navA" class="active" href="/home/">HOME</a></li>
+                        <li><a class="navA" href="/oNas/">O NAS</a></li>
+                        <li><a class="navA" href="/produkt/">PRODUKT</a></li>
+                        <li><a class="navA" href="/kontakt/">KONTAKT</a></li>
+                         {% if user.is_authenticated %}
+                            <li><a id="napis" class="navA" href="/konto/">MOJE KONTO</a></li>
+                            <li><a id="napis" class="navA" href="/wylogowanie/">WYLOGUJ SIĘ</a></li>
+                         {% else %}
+                            <li><a id="napis" class="navA" href="/logowanie/">LOGOWANIE</a></li>
+                         {% endif %}                     
+                    </ul>
+                    <div class="login-signup">
+                    </div>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="login-signup">
+                </div>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </header>
+
+        <script>
+            hamburger = document.querySelector(".hamburger");
+            nav = document.querySelector("nav");
+            hamburger.onclick = function() {
+                nav.classList.toggle("active");
+            }
+        </script>
+
+        <p id="title">HELLO</p>
+
+        <footer>
+            <div class="rowF">
+                 <div class="colF">
+                      <p id="ustawienie">                
+                           Future
+                           <br>
+                           Office
+                           <br>
+                           Creators
+                      </p>
+                 </div>
+                 <div class="colF">
+                      <h3>BIURO<div class="underline"><span></span></div></h3>
+                      <p>FoCzki</p>
+                      <p>ul. Kopernika 1</p>
+                      <p>85-074 Bydgoszcz</p>
+                      <p>Bydgoszcz</p>
+                      <p class="email-id">JasperArgonaut@gmail.com</p>
+                 </div>
+                 <div class="colF">
+                      <h3>POMOC<div class="underline"><span></span></div></h3>
+                      <p class="pomoc"><a class="pomocA" href="/home/">Home</a></p>
+                      <p class="pomoc"><a class="pomocA" href="/oNas/">O nas</a></p>
+                      <p class="pomoc"><a class="pomocA" href="/regulamin/">Regulamin</a></p>
+                      <p class="pomoc"><a class="pomocA" href="/platnosc/">Płatność oraz wysyłka</a></p>
+                      <p class="pomoc"><a class="pomocA" href="/zwroty/">Zwroty</a></p>
+                 </div>
+                 <div class="colF">
+                    <h3>Newsletter <div class="underline"><span></span></div></h3>
+                    <form class="formNews" method="POST" action="/newsletter/">
+                       {%csrf_token%}
+                         <i class="far fa-envelope"></i>
+                         <input type="email" class="email-id" placeholder="Enter your email" name="email" required>
+                         <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+               </div>
+            </div>
+            <hr>
+            <p class="copyright">2023 FoCzki</p>
+       </footer>
+
+     </body>
+</html>
+
+
